@@ -1,0 +1,13 @@
+{
+  "name": "remix-cloudflare-template",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "VHS <vhsdev@tutanota.com>",
+  "license": "OBSD",
+  "description": "All-in-one remix starter template for Cloudflare Pages",
+  "dependencies": {}
+}
