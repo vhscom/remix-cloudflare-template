@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "remix vite:dev",
+    "format": "prettier --write .",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,6 +32,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.1.0",
+    "prettier": "^3.4.2",
     "vite-tsconfig-paths": "^5.1.4",
     "wrangler": "^3.95.0"
   }
