@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "build": "remix vite:build",
     "dev": "remix vite:dev",
+    "start": "wrangler dev",
+    "deploy": "wrangler deploy",
     "format": "prettier --write .",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "test": "vitest"
+    "lint": "eslint app platform --cache --cache-location ./node_modules/.cache/eslint",
+    "test": "vitest",
+    "typegen": "wrangler types"
   },
   "keywords": [],
   "author": "VHS <vhsdev@tutanota.com>",
@@ -14,12 +18,14 @@
   "description": "All-in-one remix starter template for Cloudflare Pages",
   "dependencies": {
     "@remix-run/cloudflare": "^2.15.1",
+    "@remix-run/cloudflare-pages": "^2.15.1",
     "@remix-run/react": "^2.15.1",
     "isbot": "^4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241205.0",
     "@eslint/js": "^9.17.0",
     "@remix-run/dev": "^2.15.1",
     "@types/react": "^19.0.1",

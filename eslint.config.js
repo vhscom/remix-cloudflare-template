@@ -8,8 +8,8 @@ import importPlugin from 'eslint-plugin-import';
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
+  // Base configuration shared between client and server
   {
-    // Base configuration for all files
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -18,19 +18,67 @@ export default [
           jsx: true,
         },
       },
-      globals: {
-        // Equivalent to env settings
-        window: 'readonly',
-        document: 'readonly',
-        require: 'readonly',
-        module: 'readonly',
-      },
     },
     ignores: ['!**/.server', '!**/.client'],
   },
 
   // Include recommended JS rules
   js.configs.recommended,
+
+  // Client-side specific configuration
+  {
+    files: ['**/*.client.{js,jsx,ts,tsx}', '**/routes/**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+        navigator: 'readonly',
+        location: 'readonly',
+        fetch: 'readonly',
+      },
+    },
+  },
+
+  // Server-side specific configuration
+  {
+    files: [
+      '**/platform/**/*.{js,jsx,ts,tsx}',
+      '**/entry.server.{js,jsx,ts,tsx}',
+    ],
+    languageOptions: {
+      globals: {
+        // Web APIs available in Workers
+        Response: 'readonly',
+        Request: 'readonly',
+        Headers: 'readonly',
+        fetch: 'readonly',
+        FormData: 'readonly',
+        Blob: 'readonly',
+        File: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        AbortController: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        // Stream APIs
+        ReadableStream: 'readonly',
+        WritableStream: 'readonly',
+        TransformStream: 'readonly',
+        // Crypto
+        crypto: 'readonly',
+        // Other Worker globals
+        caches: 'readonly',
+        WebSocket: 'readonly',
+        // Node-like globals
+        console: 'readonly',
+        process: 'readonly',
+        // Cloudflare types
+        Env: 'readonly',
+      },
+    },
+  },
 
   // React and JSX configuration
   {
@@ -61,7 +109,7 @@ export default [
     },
   },
 
-  // TypeScript specific configuration
+  // TypeScript configuration
   {
     files: ['**/*.{ts,tsx}'],
     plugins: {
