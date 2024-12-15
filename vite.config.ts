@@ -22,7 +22,14 @@ export default defineConfig({
         v3_singleFetch: true,
         v3_lazyRouteDiscovery: true,
       },
+      ignoredRouteFiles: ['**/.*', '**/__tests__/**'],
     }),
     tsconfigPaths(),
   ],
+  test: {
+    environment: 'happy-dom',
+    setupFiles: ['./test/setup-test-env.ts'],
+    include: ['./app/**/*.test.{js,jsx,ts,tsx}'],
+    globals: true,
+  },
 });
