@@ -1,5 +1,6 @@
 {
   "name": "remix-cloudflare-template",
+  "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
@@ -16,7 +17,7 @@
   "keywords": [],
   "author": "VHS <vhsdev@tutanota.com>",
   "license": "OBSD",
-  "description": "All-in-one remix starter template for Cloudflare Pages",
+  "description": "Versatile remix starter template for Cloudflare Pages",
   "dependencies": {
     "@remix-run/cloudflare": "^2.15.1",
     "@remix-run/cloudflare-pages": "^2.15.1",
