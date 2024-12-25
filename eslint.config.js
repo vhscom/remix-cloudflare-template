@@ -70,6 +70,7 @@ export default [
         crypto: 'readonly',
         // Other Worker globals
         caches: 'readonly',
+        CacheStorage: 'readonly',
         WebSocket: 'readonly',
         // Node-like globals
         console: 'readonly',
