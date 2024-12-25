@@ -2,13 +2,26 @@
 name = "template"
 main = "./platform/server.ts"
 compatibility_date = "2024-11-11"
+account_id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# Explicitly set runtime compatability flags for Cloudflare.
+# Docs: https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
+# compatibility_flags = [ "nodejs_compat" ]
+compatibility_flags = [
+    # LaunchDarkly's Cloudflare integration requires setting Node compatability flag.
+    # Docs: https://docs.launchdarkly.com/guides/infrastructure/cloudflare-workers#set-up-the-launchdarkly-cloudflare-integration
+    "nodejs_compat"
+]
 
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#kv-namespaces
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-kv_namespaces = [{ binding = "cache", id = "your-actual-kv-namespace-id" }]
+kv_namespaces = [
+    { binding = "cache", id = "your-actual-kv-namespace-id" },
+    { binding = "LD_KV", id = "your-actual-kv-namespace-id", preview_id = "your-actual-kv-namespace-preview-id" }
+]
 
 # Bind static asset directory. Allows resource fetching from Worker scripts.
 # Docs: https://developers.cloudflare.com/workers/static-assets/binding/
@@ -49,6 +62,7 @@ enabled = true
 [vars]
 GITHUB_OWNER = "vhscom"
 GITHUB_REPO = "remix-cloudflare-template"
+#LD_CLIENT_SIDE_ID="6760bbf2bce3aa0988f4d732"
 
 # Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#workers-ai

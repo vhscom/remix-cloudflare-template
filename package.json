@@ -6,7 +6,7 @@
   "scripts": {
     "build": "remix vite:build",
     "dev": "remix vite:dev",
-    "start": "wrangler dev",
+    "start": "wrangler dev --experimental-local",
     "deploy": "wrangler deploy",
     "format": "prettier --write .",
     "lint": "eslint app platform test --cache --cache-location ./node_modules/.cache/eslint",

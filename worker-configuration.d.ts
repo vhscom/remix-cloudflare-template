@@ -2,6 +2,8 @@
 
 interface Env {
 	cache: KVNamespace;
+	LD_KV: KVNamespace;
 	GITHUB_OWNER: "vhscom";
 	GITHUB_REPO: "remix-cloudflare-template";
+	LD_CLIENT_SIDE_ID: string;
 }
