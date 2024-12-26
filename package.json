@@ -6,7 +6,7 @@
   "scripts": {
     "build": "remix vite:build",
     "dev": "remix vite:dev",
-    "start": "wrangler dev --experimental-local",
+    "start": "wrangler dev --remote",
     "deploy": "wrangler deploy",
     "format": "prettier --write .",
     "lint": "eslint app platform test --cache --cache-location ./node_modules/.cache/eslint",
@@ -55,6 +55,6 @@
     "typescript": "^5.7.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.1.8",
-    "wrangler": "^3.95.0"
+    "wrangler": "^3.99.0"
   }
 }
