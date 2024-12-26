@@ -2,8 +2,7 @@ import type { AppLoadContext, EntryContext } from '@remix-run/cloudflare';
 import { RemixServer } from '@remix-run/react';
 import { isbot } from 'isbot';
 import { renderToReadableStream } from 'react-dom/server';
-import { init as initLD } from '@launchdarkly/cloudflare-server-sdk';
-import type { KVNamespace as CloudflareKV } from '@cloudflare/workers-types';
+import { LDClient } from '@launchdarkly/cloudflare-server-sdk';
 
 const ABORT_DELAY = 5000;
 
@@ -12,14 +11,8 @@ export default async function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  loadContext: AppLoadContext,
+  loadContext: AppLoadContext & { ldClient: LDClient },
 ) {
-  const env = loadContext.env as Env;
-  const ldClient = initLD(env.LD_CLIENT_SIDE_ID, env.LD_KV as CloudflareKV, {
-    sendEvents: true,
-  });
-  await ldClient.waitForInitialization();
-
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), ABORT_DELAY);
 
@@ -44,8 +37,7 @@ export default async function handleRequest(
     clearTimeout(timeoutId);
     // Gotcha: you must call flush otherwise events will not be sent to LD servers
     // due to the ephemeral nature of edge workers.
-    // https://developers.cloudflare.com/workers/runtime-apis/context/#waituntil
-    ldClient.flush().then(() => ldClient.close());
+    loadContext.ldClient.flush().then(() => loadContext.ldClient.close());
   });
 
   if (isbot(request.headers.get('user-agent'))) {

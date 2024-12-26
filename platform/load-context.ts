@@ -1,4 +1,9 @@
 import { type PlatformProxy } from 'wrangler';
+import type { KVNamespace as CloudflareKV } from '@cloudflare/workers-types';
+import {
+  init as initLD,
+  type LDClient,
+} from '@launchdarkly/cloudflare-server-sdk';
 
 type GetLoadContextArgs = {
   request: Request;
@@ -7,6 +12,7 @@ type GetLoadContextArgs = {
       caches: PlatformProxy<Env>['caches'] | CacheStorage;
       cf: Request['cf'];
     };
+    ldClient?: LDClient;
   };
 };
 
@@ -17,11 +23,18 @@ declare module '@remix-run/cloudflare' {
   }
 }
 
-export function getLoadContext({ context }: GetLoadContextArgs) {
+export async function getLoadContext({ context }: GetLoadContextArgs) {
+  const env = context.cloudflare.env;
+  const ldClient = initLD(env.LD_CLIENT_SIDE_ID, env.LD_KV as CloudflareKV, {
+    sendEvents: true,
+  });
+  await ldClient.waitForInitialization();
+
   return {
-    env: context.cloudflare.env,
+    env,
     cf: context.cloudflare.cf,
     ctx: context.cloudflare.ctx,
     cache: context.cloudflare.caches,
+    ldClient,
   };
 }

@@ -35,6 +35,7 @@ export default {
           },
         },
       });
+      // @ts-expect-error Load context not same as AppLoadContext
       return await handleRemixRequest(request, loadContext);
     } catch (error) {
       console.error(error);
