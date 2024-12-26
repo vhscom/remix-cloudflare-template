@@ -37,7 +37,11 @@ export default async function handleRequest(
     clearTimeout(timeoutId);
     // Gotcha: you must call flush otherwise events will not be sent to LD servers
     // due to the ephemeral nature of edge workers.
-    loadContext.ldClient.flush().then(() => loadContext.ldClient.close());
+    loadContext.ldClient
+      .flush((err: Error | null, res: boolean) => {
+        console.log(`flushed events result: ${res}, error: ${err}`);
+      })
+      .then(() => loadContext.ldClient.close());
   });
 
   if (isbot(request.headers.get('user-agent'))) {

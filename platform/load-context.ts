@@ -4,6 +4,7 @@ import {
   init as initLD,
   type LDClient,
 } from '@launchdarkly/cloudflare-server-sdk';
+import { BasicLogger } from '@launchdarkly/js-sdk-common';
 
 type GetLoadContextArgs = {
   request: Request;
@@ -27,6 +28,7 @@ export async function getLoadContext({ context }: GetLoadContextArgs) {
   const env = context.cloudflare.env;
   const ldClient = initLD(env.LD_CLIENT_SIDE_ID, env.LD_KV as CloudflareKV, {
     sendEvents: true,
+    logger: new BasicLogger({ level: 'debug' }),
   });
   await ldClient.waitForInitialization();
 

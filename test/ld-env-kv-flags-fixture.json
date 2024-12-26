@@ -1,0 +1,49 @@
+{
+  "flags": {
+    "button-text": {
+      "key": "button-text",
+      "on": true,
+      "prerequisites": [],
+      "targets": [],
+      "contextTargets": [],
+      "rules": [],
+      "fallthrough": { "variation": 0 },
+      "offVariation": 1,
+      "variations": ["Click here", "Click me"],
+      "clientSideAvailability": {
+        "usingMobileKey": false,
+        "usingEnvironmentId": false
+      },
+      "clientSide": false,
+      "salt": "3e25423db2bf47c7a0d695dd5e2c327d",
+      "trackEvents": false,
+      "trackEventsFallthrough": false,
+      "debugEventsUntilDate": null,
+      "version": 3,
+      "deleted": false
+    },
+    "channels": {
+      "key": "channels",
+      "on": false,
+      "prerequisites": [],
+      "targets": [],
+      "contextTargets": [],
+      "rules": [],
+      "fallthrough": { "variation": 0 },
+      "offVariation": 1,
+      "variations": [true, false],
+      "clientSideAvailability": {
+        "usingMobileKey": true,
+        "usingEnvironmentId": true
+      },
+      "clientSide": true,
+      "salt": "b49459a631bf440089b4fb48bf14d226",
+      "trackEvents": false,
+      "trackEventsFallthrough": false,
+      "debugEventsUntilDate": null,
+      "version": 2,
+      "deleted": false
+    }
+  },
+  "segments": {}
+}
