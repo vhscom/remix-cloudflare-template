@@ -1,6 +1,7 @@
 # Remix Cloudflare Template
 
 - 📖 [Cloudflare Remix docs](https://developers.cloudflare.com/pages/framework-guides/deploy-a-remix-site/)
+- 📖 [React Router docs](https://reactrouter.com/home)
 - 📖 [Remix docs](https://remix.run/docs)
 - 📖 [Remix Cloudflare docs](https://remix.run/guides/vite#cloudflare)
 
@@ -10,6 +11,9 @@ Use this template as a starting point for your next app with [Remix Stacks](http
 
 ```shell
 bunx create-remix@latest --template vhscom/remix-cloudflare-template
+
+# Alternatively, this will also work...
+bunx create-react-router@latest --template vhscom/remix-cloudflare-template
 ```
 
 Run the above command from a terminal with [Bun](https://bun.sh/) installed and follow the guided setup.
@@ -40,11 +44,11 @@ bun run build && bun start
 This template uses [Vitest](https://vitest.dev) for testing. Run the test suite:
 
 ```shell
-# Run tests in watch mode
+# Run tests once
 bun test
 
-# Run tests once (CI mode)
-bun test:ci
+# Run tests in watch mode
+bun test:watch
 
 # Generate coverage report
 bun test:coverage
@@ -71,15 +75,13 @@ Build and deploy application:
 bun run deploy
 ```
 
-This will build and upload the app, and upload static assets and generated build files to Cloudflare Pages. You must have the correct KV namespace `id` set in `wrangler.toml` for the deployment to succeed. See [Next Steps](#next-steps) for details.
+This will build and upload the app, and upload static assets and generated build files to Cloudflare. You must have the correct KV namespace `id` set in `wrangler.toml` for the deployment to succeed.
 
-### Preview Deployments
-
-Connect your GitHub repository to Cloudflare Pages to enable automatic preview deployments for commits, branches and PRs.
+See [Project Configuration](#project-configuration) for help configuring your KV namespace.
 
 ## Project Configuration
 
-Once you've created your app using the template, create a KV for each namespace binding defined in `wrangler.toml` and manually set its `id` in the configuration file for use during deployments to Cloudflare Pages. To create a KV manually, locate KV in the [Cloudflare Dashboard](https://dash.cloudflare.com/) and choose `Create`.
+Once you've created your app using the template, create a KV for each namespace binding defined in `wrangler.toml` and manually set its `id` in the configuration file for use during deployments to Cloudflare. To create a KV manually, locate KV in the [Cloudflare Dashboard](https://dash.cloudflare.com/) and choose `Create`.
 
 To create a KV using the `wrangler` CLI you can run wrangler like:
 
@@ -88,6 +90,8 @@ bunx wrangler kv:namespace create LD_KV [--preview]
 ```
 
 Where `LD_KV` is the name of your KV store. And it will create the store and return the `id`. Pass the optional `--preview` flag if specifying the `preview_id` setting of the KV namespace.
+
+You must be logged in with `wrangler login` to allow this behavior.
 
 ## License
 
