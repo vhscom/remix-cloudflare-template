@@ -15,6 +15,7 @@ export default function Index() {
     <div className="m-2">
       <p>Testing ({clicks} clicks)</p>
       <button
+        type="button"
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-2 py-2 px-4 rounded"
         onClick={() => setClicks((n) => n + 1)}
       >
