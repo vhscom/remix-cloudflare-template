@@ -1,4 +1,12 @@
 import { useState } from 'react';
+import type { MetaFunction } from 'react-router';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'Remix Cloudflare Template' },
+    { name: 'description', content: 'This is an application template.' },
+  ];
+};
 
 export default function Index() {
   const [clicks, setClicks] = useState(0);

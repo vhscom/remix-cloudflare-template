@@ -4,4 +4,5 @@ interface Env {
 	cache: KVNamespace;
 	GITHUB_OWNER: "vhscom";
 	GITHUB_REPO: "remix-cloudflare-template";
+	LD_CLIENT_SIDE_ID: string;
 }

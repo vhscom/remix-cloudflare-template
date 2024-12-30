@@ -1,18 +1,24 @@
-import { vitePlugin as remix } from '@remix-run/dev';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+import { mergeConfig, type UserConfigExport } from 'vite';
 
-export default defineConfig({
-  plugins: [
-    remix({
-      future: {},
-    }),
-    tsconfigPaths(),
-  ],
+const baseConfig = {
   test: {
     globals: true,
     environment: 'happy-dom',
     setupFiles: ['./test/setup-test-env.ts'],
     include: ['./app/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },
+} satisfies UserConfigExport;
+
+export default defineConfig(() => {
+  return mergeConfig(baseConfig, {
+    /**
+     * Custom configuration to merge into base config.
+     * @example
+     * plugins: [reactRouter(), tsconfigPaths()]
+     **/
+    plugins: [react(), tsconfigPaths()],
+  } satisfies UserConfigExport);
 });

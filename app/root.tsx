@@ -1,12 +1,12 @@
 import {
+  type LinksFunction,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from '@remix-run/react';
+} from 'react-router';
 import type { ReactNode } from 'react';
-import { LinksFunction } from '@remix-run/cloudflare';
 import stylesheet from '~/tailwind.css?url';
 
 export const links: LinksFunction = () => [

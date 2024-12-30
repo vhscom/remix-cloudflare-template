@@ -1,35 +1,23 @@
-import {
-  cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
-  vitePlugin as remix,
-} from '@remix-run/dev';
-import { defineConfig } from 'vite';
+import { reactRouter } from '@react-router/dev/vite';
+import { cloudflareDevProxy } from '@react-router/dev/vite/cloudflare';
+import { defineConfig, mergeConfig, type UserConfigExport } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { getLoadContext } from './platform/load-context';
 
-declare module '@remix-run/cloudflare' {
-  interface Future {
-    v3_singleFetch: true;
-  }
-}
-
-export default defineConfig({
+const baseConfig = {
   plugins: [
-    remixCloudflareDevProxy(),
-    remix({
-      future: {
-        v3_fetcherPersist: true,
-        v3_relativeSplatPath: true,
-        v3_throwAbortReason: true,
-        v3_singleFetch: true,
-        v3_lazyRouteDiscovery: true,
-      },
-      ignoredRouteFiles: ['**/.*', '**/__tests__/**'],
-    }),
+    cloudflareDevProxy({ getLoadContext }),
+    reactRouter(),
     tsconfigPaths(),
   ],
-  test: {
-    environment: 'happy-dom',
-    setupFiles: ['./test/setup-test-env.ts'],
-    include: ['./app/**/*.test.{js,jsx,ts,tsx}'],
-    globals: true,
-  },
+} satisfies UserConfigExport;
+
+export default defineConfig(() => {
+  return mergeConfig(baseConfig, {
+    /**
+     * Custom configuration to merge into base config.
+     * @example
+     * plugins: [reactRouter(), tsconfigPaths()]
+     **/
+  } satisfies UserConfigExport);
 });

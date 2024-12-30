@@ -4,32 +4,34 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
-    "dev": "remix vite:dev",
+    "build": "react-router build",
+    "dev": "react-router dev",
     "start": "wrangler dev",
     "deploy": "wrangler deploy",
     "format": "prettier --write .",
     "lint": "eslint app platform test --cache --cache-location ./node_modules/.cache/eslint",
     "test": "vitest",
     "typecheck": "wrangler types && tsc",
-    "typegen": "wrangler types"
+    "typegen": "wrangler types && react-router typegen",
+    "validate": "bun run lint && bun run format && bun run typecheck"
   },
   "keywords": [],
   "author": "VHS <vhsdev@tutanota.com>",
   "license": "OBSD",
   "description": "Versatile remix starter template for Cloudflare Pages",
   "dependencies": {
-    "@remix-run/cloudflare": "^2.15.1",
-    "@remix-run/cloudflare-pages": "^2.15.1",
-    "@remix-run/react": "^2.15.1",
+    "@react-router/cloudflare": "^7.1.1",
     "isbot": "^4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router": "^7.1.1",
+    "react-router-dom": "^7.1.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241205.0",
     "@eslint/js": "^9.17.0",
-    "@remix-run/dev": "^2.15.1",
+    "@react-router/dev": "^7.1.1",
+    "@react-router/fs-routes": "^7.1.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
