@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "check": "biome check",
+    "check": "biome check && knip",
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "wrangler dev",
@@ -49,6 +49,7 @@
     "cssnano": "^7.0.6",
     "cssnano-preset-advanced": "^7.0.6",
     "happy-dom": "^15.11.7",
+    "knip": "^5.41.1",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
