@@ -10,7 +10,9 @@
     "deploy": "wrangler deploy",
     "format": "prettier --write .",
     "lint": "eslint app platform test --cache --cache-location ./node_modules/.cache/eslint",
-    "test": "vitest",
+    "test": "vitest run --browser.headless",
+    "test:ui": "vitest",
+    "test:coverage": "vitest run --coverage --browser.headless",
     "typecheck": "wrangler types && tsc",
     "typegen": "wrangler types && react-router typegen",
     "validate": "bun run lint && bun run format && bun run typecheck"
@@ -40,6 +42,8 @@
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/browser": "^2.1.8",
+    "@vitest/coverage-v8": "2.1.8",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "cssnano-preset-advanced": "^7.0.6",
@@ -57,5 +61,13 @@
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.1.8",
     "wrangler": "^3.95.0"
+  },
+  "peerDependencies": {
+    "playwright": "^1.49.1"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=22.11.0",
+    "bun": ">=1.1.36"
   }
 }

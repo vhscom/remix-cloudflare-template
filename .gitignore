@@ -4,4 +4,4 @@ build/
 .wrangler/
 .dev.vars*
 .react-router
-
+coverage
