@@ -50,6 +50,19 @@ bun test:ci
 bun test:coverage
 ```
 
+## Continuous Integration
+
+This project includes automated CI workflows that run on pull requests and pushes to the `trunk` branch, performing the following checks:
+
+- Code quality and formatting with Biome
+- Type checking with TypeScript
+- Test suite with coverage reporting
+- Build verification
+
+To see the status of CI checks, visit your repository's Actions/CI tab or check the status indicators on pull requests.
+
+Local development tip: Run `bun run check` before pushing to ensure your code meets the same quality standards checked in CI.
+
 ## Deployment
 
 Build and deploy application:
