@@ -1,8 +1,32 @@
-import { describe, it, expect } from 'vitest';
+import '@testing-library/jest-dom';
+import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
-import { RouterProvider } from 'react-router/dom';
-import { createMemoryRouter, MemoryRouter } from 'react-router';
-import App from './root';
+import {
+  RouterProvider,
+  createMemoryRouter,
+  MemoryRouter,
+  type LoaderFunctionArgs,
+} from 'react-router';
+import App, { loader } from './root';
+
+vi.mock('react-router', async () => {
+  const actual = await vi.importActual('react-router');
+  return {
+    ...actual,
+    useLoaderData: () => ({ isBot: false }),
+  };
+});
+
+vi.mock('@/platform/bot', () => ({
+  BotHandler: vi.fn().mockImplementation(() => ({
+    handleRequest: vi.fn().mockResolvedValue({
+      isBot: false,
+      botName: null,
+      simplifiedContent: false,
+      cacheControl: 'no-store',
+    }),
+  })),
+}));
 
 describe('App', () => {
   it('renders with createMemoryRouter', () => {
@@ -10,6 +34,7 @@ describe('App', () => {
       {
         path: '/',
         element: <App />,
+        loader,
       },
     ]);
 
@@ -21,7 +46,6 @@ describe('App', () => {
     expect(document.querySelector('meta[name="viewport"]')).toBeInTheDocument();
   });
 
-  // Example of simpler MemoryRouter approach
   it('renders with MemoryRouter', () => {
     const { container } = render(
       <MemoryRouter>
@@ -34,5 +58,20 @@ describe('App', () => {
 
     expect(document.querySelector('meta[charset="utf-8"]')).toBeInTheDocument();
     expect(document.querySelector('meta[name="viewport"]')).toBeInTheDocument();
+  });
+
+  describe('loader', () => {
+    it('handles bot detection', async () => {
+      const request = new Request('https://example.com');
+      const response = await loader({ request } as LoaderFunctionArgs);
+
+      expect(response.data).toMatchObject({
+        isBot: false,
+        headers: expect.any(Headers),
+      });
+
+      const headers = response.data.headers;
+      expect(headers.get('Cache-Control')).toBe('no-store');
+    });
   });
 });

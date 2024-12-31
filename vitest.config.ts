@@ -4,6 +4,7 @@ import { defineConfig, mergeConfig, type UserConfigExport } from 'vite';
 
 const baseConfig = {
   test: {
+    disableConsoleIntercept: false,
     globals: true,
     browser: {
       provider: 'playwright',
