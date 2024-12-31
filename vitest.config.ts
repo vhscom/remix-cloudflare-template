@@ -9,6 +9,7 @@ const baseConfig = {
       provider: 'playwright',
       enabled: true,
       name: 'chromium',
+      screenshotFailures: false,
     },
     environment: 'happy-dom',
     setupFiles: ['./test/setup-test-env.ts'],

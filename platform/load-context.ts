@@ -4,7 +4,7 @@ import type {
   CacheStorage,
 } from '@cloudflare/workers-types';
 
-type GetLoadContextArgs = {
+export type GetLoadContextArgs = {
   request: Request;
   context: {
     cloudflare: Omit<

@@ -5,3 +5,4 @@ build/
 .dev.vars*
 .react-router
 coverage
+__screenshots__/
