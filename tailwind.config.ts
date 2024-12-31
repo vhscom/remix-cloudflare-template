@@ -5,5 +5,6 @@ export default {
   theme: {
     extend: {},
   },
+  darkMode: 'media',
   plugins: [],
 } satisfies Config;
