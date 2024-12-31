@@ -3,7 +3,7 @@ import { renderToReadableStream } from 'react-dom/server';
 import type { EntryContext } from 'react-router';
 import { isbot } from 'isbot';
 import { cleanup } from '@testing-library/react';
-import type { GetLoadContextArgs } from '../platform/load-context';
+import type { GetLoadContextArgs } from '@/platform/load-context';
 import type { CacheStorage } from '@cloudflare/workers-types';
 import handleRequest from './entry.server';
 

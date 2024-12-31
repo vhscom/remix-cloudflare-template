@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { describe, it, expect } from 'vitest';
-import Index from '../_index';
+import Index from '@/routes/_index';
 
 describe('Index route', () => {
   it('should increment counter when button is clicked', async () => {
