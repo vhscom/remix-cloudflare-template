@@ -1,5 +1,12 @@
 # Remix Cloudflare Template
 
+> Remix/RR7 starter template for Cloudflare Workers using the [Cloudflare Static Assets beta](https://developers.cloudflare.com/workers/static-assets/).
+
+[![Continuous Integration checks](https://flat.badgen.net/github/checks/vhscom/remix-cloudflare-template)](https://github.com/vhscom/remix-cloudflare-template/actions)
+[![Minimum Bun version](https://flat.badgen.net/badge/bun/>=1.1.36/5c5983)](https://bun.sh)
+[![0BSD License](https://flat.badgen.net/github/license/vhscom/remix-cloudflare-template)](https://choosealicense.com/licenses/0bsd/)
+
+
 - 📖 [Cloudflare Remix docs](https://developers.cloudflare.com/pages/framework-guides/deploy-a-remix-site/)
 - 📖 [React Router docs](https://reactrouter.com/home)
 - 📖 [Remix docs](https://remix.run/docs)
