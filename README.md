@@ -93,6 +93,30 @@ Where `LD_KV` is the name of your KV store. And it will create the store and ret
 
 You must be logged in with `wrangler login` to allow this behavior.
 
+## Lighthouse Testing
+
+Run automated Lighthouse tests against your local development server:
+
+```shell
+bun run lighthouse
+```
+
+Configure test settings in `unlighthouse.config.ts`:
+
+```typescript
+const budget = {
+  performance: 80,
+  accessibility: 95,
+  'best-practices': 90,
+  seo: 90,
+};
+const routes = ["/", "/private-landing"];
+```
+
+CI enforces minimum scores across Lighthouse categories. JSON reports are generated in `.unlighthouse/ci-result.json`.
+
+See the Unlighthouse docs for [help generating static reports](https://unlighthouse.dev/guide/guides/generating-static-reports).
+
 ## License
 
 This project is licensed under the Zero-Clause BSD License (0BSD) - see the [COPYING](COPYING) file for details.

@@ -6,3 +6,4 @@ build/
 .react-router
 coverage
 __screenshots__/
+.unlighthouse

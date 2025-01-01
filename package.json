@@ -16,7 +16,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage --browser.headless",
     "typecheck": "bun run typegen && tsc --noEmit",
-    "typegen": "wrangler types && react-router typegen"
+    "typegen": "wrangler types && react-router typegen",
+    "lighthouse": "wrangler dev --port 8787 & while ! nc -z 127.0.0.1 8787; do sleep 1; done && unlighthouse-ci --site http://127.0.0.1:8787"
   },
   "keywords": [],
   "author": "VHS <vhsdev@tutanota.com>",
@@ -40,6 +41,8 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
+    "@unlighthouse/cli": "^0.15.0",
+    "@unlighthouse/core": "^0.15.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/browser": "^2.1.8",
     "@vitest/coverage-v8": "2.1.8",
@@ -48,8 +51,8 @@
     "cssnano-preset-advanced": "^7.0.6",
     "happy-dom": "^15.11.7",
     "knip": "^5.41.1",
-    "postcss": "^8.4.49",
     "playwright": "^1.49.1",
+    "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
     "vite-tsconfig-paths": "^5.1.4",
