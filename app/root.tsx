@@ -8,6 +8,7 @@ import {
 } from 'react-router';
 import type { ReactNode } from 'react';
 import stylesheet from '@/tailwind.css?url';
+import { ErrorBoundary } from '@/components/error-boundary';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
@@ -23,7 +24,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <ErrorBoundary>{children}</ErrorBoundary>
         <ScrollRestoration />
         <Scripts />
       </body>
