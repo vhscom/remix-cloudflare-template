@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import type { MetaFunction } from 'react-router';
 import { Button } from 'react-aria-components';
+import type { Route } from './+types/_index';
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
   return [
     { title: 'Remix Cloudflare Template' },
     { name: 'description', content: 'This is an application template.' },

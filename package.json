@@ -15,7 +15,7 @@
     "test": "vitest run --browser.headless",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage --browser.headless",
-    "typecheck": "bun run typegen && tsc --noEmit",
+    "typecheck": "bun run typegen && tsc",
     "typegen": "wrangler types && react-router typegen",
     "lighthouse": "wrangler dev --port 8787 & while ! nc -z 127.0.0.1 8787; do sleep 1; done && unlighthouse-ci --site http://127.0.0.1:8787"
   },
